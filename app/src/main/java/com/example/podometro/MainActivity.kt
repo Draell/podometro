@@ -27,14 +27,15 @@ class MainActivity : AppCompatActivity() {
 
         val sensorManager = getSystemService(Context.SENSOR_SERVICE)as SensorManager
         val sensorPasos: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR )
-        Log.d("Sensor Examples", sensorPasos.toString())
+        Log.d("SensorExamples", sensorPasos.toString())
 
-
+        var pasos: Float = 0.0F
         val sensorEventListener: SensorEventListener = object : SensorEventListener {
             override fun onSensorChanged(sensorEvent: SensorEvent){
                 for(value in sensorEvent.values){
-                    Log.d("Sensor Examples", "sensorEvent value: ${value}")
+                    pasos += value
                 }
+                Log.d("SensorExamples", "Pasos: ${pasos}")
             }
             override fun onAccuracyChanged(p0: Sensor?, p1: Int){
 
